@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Reminder</title>
+    <script>
+        // Minta izin notifikasi
+        function enableNotifications() {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    alert('Notifikasi diaktifkan! Anda akan dapat pengingat:\n- Kamis 22:30\n- Senin 03:00');
+                    checkWorkoutTime();
+                }
+            });
+        }
+
+        // Cek jadwal setiap 1 menit
+        function checkWorkoutTime() {
+            setInterval(() => {
+                const now = new Date();
+                const day = now.getDay(); // 0=Minggu, 1=Senin, ..., 4=Kamis
+                const hour = now.getHours();
+                const minute = now.getMinutes();
+
+                // Kamis 22:30
+                if (day === 4 && hour === 22 && minute === 30) {
+                    new Notification(
+                        "🏋️‍♂️ Workout Malam!",
+                        { 
+                            body: "Waktunya latihan intensif 30 menit sebelum tidur!",
+                            icon: "https://i.imgur.com/JQ8W5Vk.png"
+                        }
+                    );
+                }
+
+                // Senin 03:00
+                if (day === 1 && hour === 3 && minute === 0) {
+                    new Notification(
+                        "🧘‍♀️ Workout Subuh!",
+                        { 
+                            body: "Sesi stretching pagi untuk memulai minggu!",
+                            icon: "https://i.imgur.com/JQ8W5Vk.png"
+                        }
+                    );
+                }
+            }, 60000); // Cek setiap menit
+        }
+    </script>
+</head>
+<body style="text-align: center; font-family: Arial;">
+    <h1>Pengingat Workout</h1>
+    <p>Notifikasi akan muncul:</p>
+    <ul style="display: inline-block; text-align: left;">
+        <li>Kamis 22:30 🏋️‍♂️ (Malam)</li>
+        <li>Senin 03:00 🧘‍♀️ (Subuh)</li>
+    </ul>
+    <br>
+    <button onclick="enableNotifications()" 
+            style="padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px;">
+        Aktifkan Notifikasi
+    </button>
+</body>
+</html>
