@@ -7,7 +7,7 @@
         function enableNotifications() {
             Notification.requestPermission().then(permission => {
                 if (permission === 'granted') {
-                    alert('Notifikasi diaktifkan! Anda akan dapat pengingat:\n- Kamis 22:30\n- Senin 03:00');
+                    alert('Notifikasi diaktifkan! Anda akan dapat pengingat:\n- Kamis 23:30\n- Senin 03:00');
                     checkWorkoutTime();
                 }
             });
@@ -21,8 +21,8 @@
                 const hour = now.getHours();
                 const minute = now.getMinutes();
 
-                // Kamis 22:30
-                if (day === 4 && hour === 22 && minute === 30) {
+                // Kamis 23:30
+                if (day === 4 && hour === 23 && minute === 30) {
                     new Notification(
                         "🏋️‍♂️ Workout Malam!",
                         { 
